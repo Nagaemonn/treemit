@@ -7,11 +7,14 @@ This is part of the `tree` command implementation, with a new function to limit 
 ## Usage
 
 ```sh
-treemit <DIRs> [OPTION]
+treemit [DIRs] [OPTION]
 
 OPTION
+    -a                 All files are listed.
+    -d                 List directories only.
     -L, --level        Max display depth of the directory tree.
     -E, --extension    Max display files of the same extensions.
+    --help             Print usage and this help message and exit.
 
     W.I.P
 ```
