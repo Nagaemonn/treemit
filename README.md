@@ -1,6 +1,9 @@
 # :evergreen_tree:treemit
 Enhanced "tree" command with file and depth limits.
 
+[![Coverage Status](https://coveralls.io/repos/github/Nagaemonn/treemit/badge.svg?branch=main)](https://coveralls.io/github/Nagaemonn/treemit?branch=main)
+[![Go Report Card](https://goreportcard.com/badge/github.com/Nagaemonn/treemit)](https://goreportcard.com/report/github.com/Nagaemonn/treemit)
+
 ## :bulb: Overview
 This is part of the `tree` command implementation, with a new function to limit the file listing based on extensions, which is not supported by the current `tree`.
 
