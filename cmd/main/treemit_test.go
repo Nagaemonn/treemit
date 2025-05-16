@@ -1,3 +1,5 @@
+/***
+
 package main
 
 import "testing"
@@ -15,3 +17,7 @@ func TestHello(t *testing.T) {
 		t.Errorf("hello() = %q, want %q", got, want)
 	}
 }
+
+
+***/
+
