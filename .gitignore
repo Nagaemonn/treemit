@@ -32,3 +32,14 @@ treemit
 
 # Text file
 *.txt
+
+# Archive file
+*.tar.gz
+*.zip
+*.7z
+*.rar
+*.iso
+*.dmg
+*.pkg
+*.deb
+*.rpm
