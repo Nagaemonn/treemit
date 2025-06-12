@@ -22,7 +22,18 @@ type options struct {
 type Node struct {
 	Name     string
 	Children []*Node
+	IsDir    bool
+	Ext      string // ファイルの拡張子
 	// 必要に応じて他の情報も追加
+}
+
+// ファイルの拡張子を取得する関数
+func getFileExtension(name string) string {
+	ext := filepath.Ext(name)
+	if ext == "" {
+		return ""
+	}
+	return ext[1:] // 先頭のドットを除去
 }
 
 // ファイル構造を探索する関数（ルートノードを返す形に変更）
@@ -32,7 +43,7 @@ func walkTree(root string, opts *options) *Node {
 		fmt.Fprintf(os.Stderr, "Error reading directory %s: %v\n", root, err)
 		return nil
 	}
-	rootNode := &Node{Name: info.Name()}
+	rootNode := &Node{Name: info.Name(), IsDir: info.IsDir(), Ext: getFileExtension(info.Name())}
 	if info.IsDir() {
 		entries, err := os.ReadDir(root)
 		if err != nil {
@@ -56,12 +67,35 @@ func walkTree(root string, opts *options) *Node {
 // ツリーを表示する関数（ルート名も表示）
 func printTree(root *Node, opts *options) {
 	fmt.Println(root.Name)
-	printTreeFancy(root.Children, "", false)
+	printTreeFancy(root.Children, "", false, opts)
 }
 
-func printTreeFancy(nodes []*Node, prefix string, isRoot bool) {
-	for i, node := range nodes {
-		isLast := i == len(nodes)-1
+// 同じ拡張子のファイルをグループ化する関数
+func groupFilesByExtension(nodes []*Node) map[string][]*Node {
+	groups := make(map[string][]*Node)
+	for _, node := range nodes {
+		if !node.IsDir && node.Ext != "" {
+			groups[node.Ext] = append(groups[node.Ext], node)
+		}
+	}
+	return groups
+}
+
+func printTreeFancy(nodes []*Node, prefix string, isRoot bool, opts *options) {
+	// ディレクトリとファイルを分離
+	var dirs []*Node
+	var files []*Node
+	for _, node := range nodes {
+		if node.IsDir {
+			dirs = append(dirs, node)
+		} else {
+			files = append(files, node)
+		}
+	}
+
+	// ディレクトリを表示
+	for i, node := range dirs {
+		isLast := i == len(dirs)-1 && len(files) == 0
 		var branch string
 		if isRoot {
 			branch = ""
@@ -71,7 +105,6 @@ func printTreeFancy(nodes []*Node, prefix string, isRoot bool) {
 			branch = "├── "
 		}
 		fmt.Printf("%s%s%s\n", prefix, branch, node.Name)
-		// 次の階層のprefixを決定
 		nextPrefix := prefix
 		if !isRoot {
 			if isLast {
@@ -81,7 +114,44 @@ func printTreeFancy(nodes []*Node, prefix string, isRoot bool) {
 			}
 		}
 		if len(node.Children) > 0 {
-			printTreeFancy(node.Children, nextPrefix, false)
+			printTreeFancy(node.Children, nextPrefix, false, opts)
+		}
+	}
+
+	// ファイルを拡張子ごとにグループ化して表示
+	if len(files) > 0 {
+		groups := groupFilesByExtension(files)
+		groupIndex := 0
+		for _, groupFiles := range groups {
+			isLastGroup := groupIndex == len(groups)-1
+			displayCount := len(groupFiles)
+			if opts.extension > 0 && displayCount > opts.extension {
+				displayCount = opts.extension
+			}
+
+			for i, node := range groupFiles[:displayCount] {
+				isLast := i == displayCount-1 && isLastGroup
+				var branch string
+				if isRoot {
+					branch = ""
+				} else if isLast {
+					branch = "└── "
+				} else {
+					branch = "├── "
+				}
+				fmt.Printf("%s%s%s\n", prefix, branch, node.Name)
+			}
+
+			// 残りのファイル数を表示
+			if opts.extension > 0 && len(groupFiles) > opts.extension {
+				remaining := len(groupFiles) - opts.extension
+				branch := "└── "
+				if !isLastGroup {
+					branch = "├── "
+				}
+				fmt.Printf("%s%s... +%d\n", prefix, branch, remaining)
+			}
+			groupIndex++
 		}
 	}
 }
