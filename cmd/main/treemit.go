@@ -11,11 +11,12 @@ import (
 
 // オプションを保持する構造体
 type options struct {
-	all       bool
-	dirOnly   bool
-	level     int
-	extension int
-	help      bool
+	all           bool
+	dirOnly       bool
+	level         int
+	extension     int
+	help          bool
+	ignorePattern string // 除外パターン
 }
 
 // ファイルツリーのノード構造体（雛形）
@@ -52,6 +53,10 @@ func walkTree(root string, opts *options) *Node {
 		}
 		for _, entry := range entries {
 			if !opts.all && strings.HasPrefix(entry.Name(), ".") {
+				continue
+			}
+			// 除外パターンにマッチする場合はスキップ
+			if opts.ignorePattern != "" && matchesPattern(entry.Name(), opts.ignorePattern) {
 				continue
 			}
 			childPath := filepath.Join(root, entry.Name())
@@ -159,20 +164,15 @@ func printTreeFancy(nodes []*Node, prefix string, isRoot bool, opts *options) {
 func helpMessage() string {
 	return `Usage: treemit [DIRs] [OPTION]
 
-` +
-		`OPTION
-` +
-		`    -a                 All files are listed.
-` +
-		`    -d                 List directories only.
-` +
-		`    -L, --level        Max display depth of the directory tree.
-` +
-		`    -E, --extension    Max display files of the same extensions.
-` +
-		`    --help             Print usage and this help message and exit.
+OPTION
+    -a                 All files are listed.
+    -d                 List directories only.
+    -L, --level        Max display depth of the directory tree.
+    -E, --extension    Max display files of the same extensions.
+    -I, --ignore       List only those files that do not match the pattern given.
+                      Multiple patterns can be specified with '|'.
+    --help             Print usage and this help message and exit.
 `
-	// -hオプションも追加したかったが，本来のtreeコマンドに表示形式用-hオプション(humanize)があったため不採用
 }
 
 func buildFlagSet() (*flag.FlagSet, *options) {
@@ -180,14 +180,32 @@ func buildFlagSet() (*flag.FlagSet, *options) {
 	flags := flag.NewFlagSet("treemit", flag.ContinueOnError)
 	flags.Usage = func() { fmt.Fprint(os.Stderr, helpMessage()) }
 
-	// レイアウトの縦揃えを試したが，gofmtによる自動整形で詰められるので，それを受け入れる
 	flags.BoolVarP(&opts.all, "all", "a", false, "All files are listed.")
 	flags.BoolVarP(&opts.dirOnly, "dir", "d", false, "List directories only.")
 	flags.IntVarP(&opts.level, "level", "L", 0, "Max display depth of the directory tree.")
 	flags.IntVarP(&opts.extension, "extension", "E", 0, "Max display files of the same extensions.")
+	flags.StringVarP(&opts.ignorePattern, "ignore", "I", "", "List only those files that do not match the pattern given. Multiple patterns can be specified with '|'.")
 	flags.BoolVar(&opts.help, "help", false, "Print usage and this help message and exit.")
 
 	return flags, opts
+}
+
+// パターンにマッチするかチェックする関数
+func matchesPattern(name string, pattern string) bool {
+	if pattern == "" {
+		return false
+	}
+	patterns := strings.Split(pattern, "|")
+	for _, p := range patterns {
+		matched, err := filepath.Match(strings.TrimSpace(p), name)
+		if err != nil {
+			continue
+		}
+		if matched {
+			return true
+		}
+	}
+	return false
 }
 
 func goMain(args []string) int {
