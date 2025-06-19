@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Development Tools on treemit</title>
-        <link>http://localhost:1313/treemit/tags/development-tools/</link>
+        <link>https://Nagaemonn.github.io/treemit/tags/development-tools/</link>
         <description>Recent content in Development Tools on treemit</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ja</language>
-        <lastBuildDate>Thu, 19 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/treemit/tags/development-tools/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 19 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Nagaemonn.github.io/treemit/tags/development-tools/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>treemit: 拡張子でフィルタリングできるツリーコマンド</title>
-        <link>http://localhost:1313/treemit/post/getting-started/</link>
+        <link>https://Nagaemonn.github.io/treemit/post/getting-started/</link>
         <pubDate>Thu, 19 Jun 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/treemit/post/getting-started/</guid>
-        <description>&lt;img src="http://localhost:1313/treemit/img/featured-getting-started.png" alt="Featured image of post treemit: 拡張子でフィルタリングできるツリーコマンド" /&gt;&lt;h2 id=&#34;treemitとは&#34;&gt;treemitとは？
+        <guid>https://Nagaemonn.github.io/treemit/post/getting-started/</guid>
+        <description>&lt;img src="https://Nagaemonn.github.io/treemit/img/featured-getting-started.png" alt="Featured image of post treemit: 拡張子でフィルタリングできるツリーコマンド" /&gt;&lt;h2 id=&#34;treemitとは&#34;&gt;treemitとは？
 &lt;/h2&gt;&lt;p&gt;treemitは、Unixの&lt;code&gt;tree&lt;/code&gt;コマンドを拡張した、より柔軟なディレクトリ構造可視化ツールです。
 従来の&lt;code&gt;tree&lt;/code&gt;コマンドでは難しかった「特定の拡張子のファイルだけを表示する」といった操作が簡単にできます。&lt;/p&gt;
 &lt;h2 id=&#34;なぜtreemitを使うのか&#34;&gt;なぜtreemitを使うのか？

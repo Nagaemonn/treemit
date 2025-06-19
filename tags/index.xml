@@ -2,40 +2,40 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Tags on treemit</title>
-        <link>http://localhost:1313/treemit/tags/</link>
+        <link>https://Nagaemonn.github.io/treemit/tags/</link>
         <description>Recent content in Tags on treemit</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ja</language>
-        <lastBuildDate>Thu, 19 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/treemit/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 19 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Nagaemonn.github.io/treemit/tags/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>CLI</title>
-        <link>http://localhost:1313/treemit/tags/cli/</link>
+        <link>https://Nagaemonn.github.io/treemit/tags/cli/</link>
         <pubDate>Thu, 19 Jun 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/treemit/tags/cli/</guid>
+        <guid>https://Nagaemonn.github.io/treemit/tags/cli/</guid>
         <description></description>
         </item>
         <item>
         <title>Development Tools</title>
-        <link>http://localhost:1313/treemit/tags/development-tools/</link>
+        <link>https://Nagaemonn.github.io/treemit/tags/development-tools/</link>
         <pubDate>Thu, 19 Jun 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/treemit/tags/development-tools/</guid>
+        <guid>https://Nagaemonn.github.io/treemit/tags/development-tools/</guid>
         <description></description>
         </item>
         <item>
         <title>Go</title>
-        <link>http://localhost:1313/treemit/tags/go/</link>
+        <link>https://Nagaemonn.github.io/treemit/tags/go/</link>
         <pubDate>Thu, 19 Jun 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/treemit/tags/go/</guid>
+        <guid>https://Nagaemonn.github.io/treemit/tags/go/</guid>
         <description></description>
         </item>
         <item>
         <title>Productivity</title>
-        <link>http://localhost:1313/treemit/tags/productivity/</link>
+        <link>https://Nagaemonn.github.io/treemit/tags/productivity/</link>
         <pubDate>Thu, 19 Jun 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/treemit/tags/productivity/</guid>
+        <guid>https://Nagaemonn.github.io/treemit/tags/productivity/</guid>
         <description></description>
         </item>
         

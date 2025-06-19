@@ -1,0 +1,24 @@
+:root {
+    --zh-font-family: "Noto Sans JP", "Yu Gothic", "Meiryo", "Hiragino Kaku Gothic ProN", "TakaoGothic", "Osaka", "MS PGothic", sans-serif;
+    --base-font-family: var(--zh-font-family), "Lato", var(--sys-font-family), sans-serif;
+}
+
+body {
+    font-family: 'Noto Sans JP', 'Lato', 'Yu Gothic', 'Meiryo', sans-serif;
+}
+
+body,
+.article-content,
+.site-name,
+.site-description,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+li,
+span {
+    font-family: var(--base-font-family);
+}
