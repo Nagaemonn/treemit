@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Productivity on treemit</title>
-        <link>http://localhost:1313/tags/productivity/</link>
+        <link>https://example.com/tags/productivity/</link>
         <description>Recent content in Productivity on treemit</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ja</language>
-        <lastBuildDate>Fri, 26 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/productivity/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 26 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/productivity/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>treemit: 拡張子でフィルタリングできるツリーコマンド</title>
-        <link>http://localhost:1313/post/getting-started/</link>
+        <link>https://example.com/post/getting-started/</link>
         <pubDate>Fri, 26 Jan 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/post/getting-started/</guid>
-        <description>&lt;img src="http://localhost:1313/tree-command.png" alt="Featured image of post treemit: 拡張子でフィルタリングできるツリーコマンド" /&gt;&lt;h2 id=&#34;treemitとは&#34;&gt;treemitとは？
+        <guid>https://example.com/post/getting-started/</guid>
+        <description>&lt;img src="https://example.com/tree-command.png" alt="Featured image of post treemit: 拡張子でフィルタリングできるツリーコマンド" /&gt;&lt;h2 id=&#34;treemitとは&#34;&gt;treemitとは？
 &lt;/h2&gt;&lt;p&gt;treemitは、Unixの&lt;code&gt;tree&lt;/code&gt;コマンドを拡張した、より柔軟なディレクトリ構造可視化ツールです。
 従来の&lt;code&gt;tree&lt;/code&gt;コマンドでは難しかった「特定の拡張子のファイルだけを表示する」といった操作が簡単にできます。&lt;/p&gt;
 &lt;h2 id=&#34;なぜtreemitを使うのか&#34;&gt;なぜtreemitを使うのか？
