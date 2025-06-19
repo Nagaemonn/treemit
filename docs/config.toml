@@ -1,0 +1,10 @@
+# docs/config.toml
+baseURL = "https://example.com/"
+languageCode = "ja"
+title = "treemit"
+
+# 例：「Stack」というテーマを使う場合
+[module]
+  [[module.imports]]
+    path = "github.com/CaiJimmy/hugo-theme-stack/v3"
+    version = "v3.30.0"
