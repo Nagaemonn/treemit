@@ -5,10 +5,11 @@
         <link>http://localhost:1313/treemit/tags/cli/</link>
         <description>Recent content in CLI on treemit</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>ja</language><atom:link href="http://localhost:1313/treemit/tags/cli/index.xml" rel="self" type="application/rss+xml" /><item>
+        <language>ja</language>
+        <lastBuildDate>Thu, 19 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/treemit/tags/cli/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>treemit: 拡張子でフィルタリングできるツリーコマンド</title>
         <link>http://localhost:1313/treemit/post/getting-started/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        <pubDate>Thu, 19 Jun 2025 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/treemit/post/getting-started/</guid>
         <description>&lt;img src="http://localhost:1313/treemit/img/featured-getting-started.png" alt="Featured image of post treemit: 拡張子でフィルタリングできるツリーコマンド" /&gt;&lt;h2 id=&#34;treemitとは&#34;&gt;treemitとは？
@@ -31,9 +32,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;基本的な使い方&#34;&gt;基本的な使い方
 &lt;/h2&gt;&lt;h3 id=&#34;基本的なディレクトリツリーの表示&#34;&gt;基本的なディレクトリツリーの表示
 &lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;treemit &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;ディレクトリパス&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;特定の拡張子のファイルだけを表示&#34;&gt;特定の拡張子のファイルだけを表示
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;treemit -E go  &lt;span style=&#34;color:#75715e&#34;&gt;# .goファイルだけを表示&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;treemit -E md  &lt;span style=&#34;color:#75715e&#34;&gt;# .mdファイルだけを表示&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;特定の拡張子ごとの表示数を制限&#34;&gt;特定の拡張子ごとの表示数を制限
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;treemit -E &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;# 各拡張子ごとに2ファイルまで表示&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;ディレクトリの深さを制限して表示&#34;&gt;ディレクトリの深さを制限して表示
 &lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;treemit -L &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;# 深さ2階層まで表示&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;すべてのファイルを表示隠しファイルを含む&#34;&gt;すべてのファイルを表示（隠しファイルを含む）
@@ -63,7 +63,7 @@
       &lt;/tr&gt;
       &lt;tr&gt;
           &lt;td&gt;-E, &amp;ndash;extension&lt;/td&gt;
-          &lt;td&gt;表示する拡張子を指定&lt;/td&gt;
+          &lt;td&gt;各拡張子ごとの表示数上限を指定&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
           &lt;td&gt;&amp;ndash;help&lt;/td&gt;
@@ -73,9 +73,9 @@
 &lt;/table&gt;
 &lt;h2 id=&#34;使用例&#34;&gt;使用例
 &lt;/h2&gt;&lt;h3 id=&#34;goプロジェクトのソースファイル構造を確認&#34;&gt;Goプロジェクトのソースファイル構造を確認
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;treemit -E go ./src
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;treemit -E &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; ./src  &lt;span style=&#34;color:#75715e&#34;&gt;# 各拡張子ごとに2ファイルまで表示&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;ドキュメントファイルの構造を2階層まで表示&#34;&gt;ドキュメントファイルの構造を2階層まで表示
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;treemit -E md -L &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; ./docs
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;treemit -E &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; -L &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; ./docs  &lt;span style=&#34;color:#75715e&#34;&gt;# 各拡張子ごとに1ファイルまで、深さ2階層まで表示&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;開発背景&#34;&gt;開発背景
 &lt;/h2&gt;&lt;p&gt;既存の&lt;code&gt;tree&lt;/code&gt;コマンドは優れたツールですが、特定の拡張子のファイルだけを表示する機能が不足していました。
 treemitは、この機能を追加することで、より効率的なプロジェクト構造の把握を可能にします。&lt;/p&gt;

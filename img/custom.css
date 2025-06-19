@@ -1,0 +1,8 @@
+:root {
+    --ja-font-family: "Yu Gothic", "Meiryo", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Noto Sans CJK JP", "TakaoGothic", "Osaka", "MS PGothic", sans-serif;
+    --base-font-family: var(--ja-font-family), "Lato", var(--sys-font-family), sans-serif;
+}
+
+body {
+    font-family: var(--base-font-family) !important;
+}
