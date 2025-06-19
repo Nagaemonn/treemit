@@ -3,8 +3,37 @@ baseURL = "https://example.com/"
 languageCode = "ja"
 title = "treemit"
 
-# 例：「Stack」というテーマを使う場合
+# Stack theme configuration
+[params]
+  mainSections = ["post"]
+  featuredImageField = "image"
+  rssFullContent = true
+  [params.footer]
+    since = 2024
+  [params.sidebar]
+    enabled = true
+    emoji = "🌲"
+    subtitle = "Tree-based Commit Message Generator"
+    [params.sidebar.profile]
+      enabled = true
+      avatar = "img/avatar.png"
+      name = "Nagaemonn"
+      bio = "Tree-based Commit Message Generator"
+
+# Theme module configuration
 [module]
   [[module.imports]]
     path = "github.com/CaiJimmy/hugo-theme-stack/v3"
     version = "v3.30.0"
+
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+    weight = 10
+  [[menu.main]]
+    identifier = "tutorial"
+    name = "Tutorial"
+    url = "/post"
+    weight = 20
