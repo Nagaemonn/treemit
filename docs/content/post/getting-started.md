@@ -1,8 +1,8 @@
 ---
 title: "treemit: 拡張子でフィルタリングできるツリーコマンド"
 description: "ディレクトリ構造を可視化する「tree」コマンドを拡張し、拡張子によるフィルタリング機能を追加したCLIツール"
-date: 2024-01-26
-image: "/tree-command.png"  # 後で適切な画像に差し替え
+date: 2025-06-19
+image: "img/featured-getting-started.png"
 categories:
     - Tutorial
 tags:
