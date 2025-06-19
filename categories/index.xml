@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Categories on treemit</title>
-        <link>https://example.com/categories/</link>
+        <link>http://localhost:1313/treemit/categories/</link>
         <description>Recent content in Categories on treemit</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ja</language>
-        <lastBuildDate>Fri, 26 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 26 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/treemit/categories/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Tutorial</title>
-        <link>https://example.com/categories/tutorial/</link>
+        <link>http://localhost:1313/treemit/categories/tutorial/</link>
         <pubDate>Fri, 26 Jan 2024 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/categories/tutorial/</guid>
+        <guid>http://localhost:1313/treemit/categories/tutorial/</guid>
         <description></description>
         </item>
         

@@ -2,34 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://example.com/categories/</loc>
+    <loc>http://localhost:1313/treemit/categories/</loc>
     <lastmod>2024-01-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/tags/cli/</loc>
+    <loc>http://localhost:1313/treemit/tags/cli/</loc>
     <lastmod>2024-01-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/tags/development-tools/</loc>
+    <loc>http://localhost:1313/treemit/tags/development-tools/</loc>
     <lastmod>2024-01-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/tags/go/</loc>
+    <loc>http://localhost:1313/treemit/tags/go/</loc>
     <lastmod>2024-01-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/post/</loc>
+    <loc>http://localhost:1313/treemit/post/</loc>
     <lastmod>2024-01-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/tags/productivity/</loc>
+    <loc>http://localhost:1313/treemit/tags/productivity/</loc>
     <lastmod>2024-01-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/tags/</loc>
+    <loc>http://localhost:1313/treemit/tags/</loc>
     <lastmod>2024-01-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/</loc>
+    <loc>http://localhost:1313/treemit/</loc>
     <lastmod>2024-01-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/post/getting-started/</loc>
+    <loc>http://localhost:1313/treemit/post/getting-started/</loc>
     <lastmod>2024-01-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/categories/tutorial/</loc>
+    <loc>http://localhost:1313/treemit/categories/tutorial/</loc>
     <lastmod>2024-01-26T00:00:00+00:00</lastmod>
   </url>
 </urlset>
