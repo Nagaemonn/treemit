@@ -5,14 +5,13 @@
         <link>http://localhost:1313/treemit/tags/cli/</link>
         <description>Recent content in CLI on treemit</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>ja</language>
-        <lastBuildDate>Fri, 26 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/treemit/tags/cli/index.xml" rel="self" type="application/rss+xml" /><item>
+        <language>ja</language><atom:link href="http://localhost:1313/treemit/tags/cli/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>treemit: 拡張子でフィルタリングできるツリーコマンド</title>
         <link>http://localhost:1313/treemit/post/getting-started/</link>
-        <pubDate>Fri, 26 Jan 2024 00:00:00 +0000</pubDate>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/treemit/post/getting-started/</guid>
-        <description>&lt;img src="http://localhost:1313/tree-command.png" alt="Featured image of post treemit: 拡張子でフィルタリングできるツリーコマンド" /&gt;&lt;h2 id=&#34;treemitとは&#34;&gt;treemitとは？
+        <description>&lt;img src="http://localhost:1313/treemit/img/featured-getting-started.png" alt="Featured image of post treemit: 拡張子でフィルタリングできるツリーコマンド" /&gt;&lt;h2 id=&#34;treemitとは&#34;&gt;treemitとは？
 &lt;/h2&gt;&lt;p&gt;treemitは、Unixの&lt;code&gt;tree&lt;/code&gt;コマンドを拡張した、より柔軟なディレクトリ構造可視化ツールです。
 従来の&lt;code&gt;tree&lt;/code&gt;コマンドでは難しかった「特定の拡張子のファイルだけを表示する」といった操作が簡単にできます。&lt;/p&gt;
 &lt;h2 id=&#34;なぜtreemitを使うのか&#34;&gt;なぜtreemitを使うのか？
