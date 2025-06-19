@@ -19,6 +19,7 @@ title = "treemit"
       avatar = "img/avatar.png"
       name = "Nagaemonn"
       bio = "Tree-based Commit Message Generator"
+  customCSS = ["custom.css"]
 
 # Theme module configuration
 [module]
