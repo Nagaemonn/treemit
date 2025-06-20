@@ -38,7 +38,11 @@ func getFileExtension(name string) string {
 }
 
 // ファイル構造を探索する関数（ルートノードを返す形に変更）
-func walkTree(root string, opts *options) *Node {
+// depth: 現在の深さ（ルートは0）
+func walkTree(root string, opts *options, depth int) *Node {
+	if opts.level > 0 && depth > opts.level {
+		return nil
+	}
 	info, err := os.Stat(root)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error reading directory %s: %v\n", root, err)
@@ -60,7 +64,7 @@ func walkTree(root string, opts *options) *Node {
 				continue
 			}
 			childPath := filepath.Join(root, entry.Name())
-			childNode := walkTree(childPath, opts)
+			childNode := walkTree(childPath, opts, depth+1)
 			if childNode != nil {
 				rootNode.Children = append(rootNode.Children, childNode)
 			}
@@ -72,7 +76,7 @@ func walkTree(root string, opts *options) *Node {
 // ツリーを表示する関数（ルート名も表示）
 func printTree(root *Node, opts *options) {
 	fmt.Println(root.Name)
-	printTreeFancy(root.Children, "", false, opts)
+	printTreeFancy(root.Children, "", false, opts, 0)
 }
 
 // 同じ拡張子のファイルをグループ化する関数
@@ -86,7 +90,10 @@ func groupFilesByExtension(nodes []*Node) map[string][]*Node {
 	return groups
 }
 
-func printTreeFancy(nodes []*Node, prefix string, isRoot bool, opts *options) {
+func printTreeFancy(nodes []*Node, prefix string, isRoot bool, opts *options, depth int) {
+	if opts.level > 0 && depth >= opts.level {
+		return
+	}
 	// ディレクトリとファイルを分離
 	var dirs []*Node
 	var files []*Node
@@ -119,7 +126,7 @@ func printTreeFancy(nodes []*Node, prefix string, isRoot bool, opts *options) {
 			}
 		}
 		if len(node.Children) > 0 {
-			printTreeFancy(node.Children, nextPrefix, false, opts)
+			printTreeFancy(node.Children, nextPrefix, false, opts, depth+1)
 		}
 	}
 
@@ -221,11 +228,11 @@ func goMain(args []string) int {
 	}
 	if flags.NArg() == 0 {
 		// 引数がなければカレントディレクトリのみ
-		printTree(walkTree(".", opts), opts)
+		printTree(walkTree(".", opts, 0), opts)
 	} else {
 		for i := 0; i < flags.NArg(); i++ {
 			dir := flags.Arg(i)
-			printTree(walkTree(dir, opts), opts)
+			printTree(walkTree(dir, opts, 0), opts)
 		}
 	}
 	return 0

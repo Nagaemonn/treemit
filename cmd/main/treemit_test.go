@@ -82,7 +82,7 @@ func TestWalkTree(t *testing.T) {
 	}
 
 	opts := &options{extension: 2}
-	root := walkTree(tempDir, opts)
+	root := walkTree(tempDir, opts, 0)
 
 	if root == nil {
 		t.Fatal("Expected non-nil root node")
@@ -154,7 +154,7 @@ func TestWalkTreeWithIgnore(t *testing.T) {
 
 	// venvとnode_modulesを除外
 	opts := &options{ignorePattern: "venv|node_modules"}
-	root := walkTree(tempDir, opts)
+	root := walkTree(tempDir, opts, 0)
 
 	if root == nil {
 		t.Fatal("Expected non-nil root node")
@@ -165,5 +165,53 @@ func TestWalkTreeWithIgnore(t *testing.T) {
 		if child.Name == "venv" || child.Name == "node_modules" {
 			t.Errorf("Expected %s to be ignored", child.Name)
 		}
+	}
+}
+
+func TestWalkTreeWithLevel(t *testing.T) {
+	tempDir, err := os.MkdirTemp("", "treemit_test")
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer os.RemoveAll(tempDir)
+
+	// 2階層のディレクトリ構造を作成
+	files := []string{
+		"a.txt",
+		"dir1/b.txt",
+		"dir1/dir2/c.txt",
+	}
+	for _, file := range files {
+		path := filepath.Join(tempDir, file)
+		dir := filepath.Dir(path)
+		if err := os.MkdirAll(dir, 0755); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := os.Create(path); err != nil {
+			t.Fatal(err)
+		}
+	}
+
+	opts := &options{level: 2}
+	root := walkTree(tempDir, opts, 0)
+	if root == nil {
+		t.Fatal("Expected non-nil root node")
+	}
+	// dir1/dir2/c.txt は level=2 ではdir2は含まれるが、そのChildrenは空
+	foundDir2 := false
+	for _, child := range root.Children {
+		if child.Name == "dir1" {
+			for _, sub := range child.Children {
+				if sub.Name == "dir2" {
+					foundDir2 = true
+					if len(sub.Children) != 0 {
+						t.Errorf("dir2's Children should be empty when level=2")
+					}
+				}
+			}
+		}
+	}
+	if !foundDir2 {
+		t.Errorf("dir2 should be included when level=2")
 	}
 }
