@@ -43,5 +43,10 @@ make_distribution_files:
     done
 
 upload_assets tag:
-    sleep 5
-    gh release upload --repo Nagaemonn treemit {{ tag }} dist/*.tar.gz
+    # リリースが存在するまで最大10回リトライ
+    for i in $(seq 1 10); do \
+        gh release view {{ tag }} --repo Nagaemonn/treemit && break; \
+        echo 'Waiting for GitHub release to be available...'; \
+        sleep 3; \
+    done
+    gh release upload --repo Nagaemonn/treemit {{ tag }} dist/*.tar.gz
