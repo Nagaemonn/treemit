@@ -43,4 +43,5 @@ make_distribution_files:
     done
 
 upload_assets tag:
+    sleep 5
     gh release upload --repo Nagaemonn treemit {{ tag }} dist/*.tar.gz
