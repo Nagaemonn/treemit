@@ -8,7 +8,6 @@ categories:
 tags:
     - CLI
     - Go
-    - Productivity
     - Development Tools
 ---
 
