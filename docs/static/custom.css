@@ -16,18 +16,9 @@ body, html, .article-content {
     word-break: break-all;
 }
 
-/* ライトモード用のコードブロック背景色 */
-@media (prefers-color-scheme: light) {
-  .article-content pre {
-    background: #f5f5f5 !important;
-    color: #222 !important;
-  }
+:root[data-scheme="dark"] .article-content .highlight {
+  background: transparent;
 }
-
-/* ダークモード用のコードブロック背景色 */
-@media (prefers-color-scheme: dark) {
-  .article-content pre {
-    background: #272822 !important;
-    color: #f8f8f2 !important;
-  }
+:root[data-scheme="light"] .article-content .highlight {
+  background: transparent;
 }
