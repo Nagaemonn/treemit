@@ -1,3 +1,24 @@
-body {
-    font-family: 'Noto Sans JP', 'Lato', 'Yu Gothic', 'Meiryo', sans-serif;
+body, html, .article-content {
+    font-family: 'Noto Sans JP', 'Lato', 'Yu Gothic', 'Meiryo', sans-serif !important;
+}
+
+/* コードブロックの幅とパディングを調整（さらに余裕を持たせる） */
+.article-content pre {
+    width: 100%;
+    max-width: 100%;
+    padding: 0.8em 0.8em !important;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-size: 1em;
+    box-sizing: border-box;
+    margin: 2.5em 0;
+    line-height: 1.5;
+    word-break: break-all;
+}
+
+:root[data-scheme="dark"] .article-content .highlight {
+  background: transparent;
+}
+:root[data-scheme="light"] .article-content .highlight {
+  background: transparent;
 }

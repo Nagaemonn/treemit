@@ -2,18 +2,18 @@
 <html lang="ja" dir="ltr">
 
 <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="ディレクトリ構造を可視化する「tree」コマンドを拡張し、拡張子によるフィルタリング機能を追加したCLIツール">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="「tree」コマンドを拡張し，拡張子によるフィルタリング機能を追加したCLIツール">
 <title>treemit: 拡張子でフィルタリングできるツリーコマンド</title>
 
 <link rel='canonical' href='https://Nagaemonn.github.io/treemit/post/getting-started/'>
 
 <link rel="stylesheet" href="/treemit/scss/style.min.946cca6c6259ef94ac55abfae7c7bf3291ea3ed5eea17ef77500b257217c6710.css"><meta property='og:title' content="treemit: 拡張子でフィルタリングできるツリーコマンド">
-<meta property='og:description' content="ディレクトリ構造を可視化する「tree」コマンドを拡張し、拡張子によるフィルタリング機能を追加したCLIツール">
+<meta property='og:description' content="「tree」コマンドを拡張し，拡張子によるフィルタリング機能を追加したCLIツール">
 <meta property='og:url' content='https://Nagaemonn.github.io/treemit/post/getting-started/'>
 <meta property='og:site_name' content='treemit'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='CLI' /><meta property='article:tag' content='Go' /><meta property='article:tag' content='Productivity' /><meta property='article:tag' content='Development Tools' /><meta property='article:published_time' content='2025-06-19T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-06-19T00:00:00&#43;00:00'/><meta property='og:image' content='https://Nagaemonn.github.io/treemit/img/featured-getting-started.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='CLI' /><meta property='article:tag' content='Go' /><meta property='article:tag' content='Development Tools' /><meta property='article:published_time' content='2025-07-03T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-07-03T00:00:00&#43;00:00'/><meta property='og:image' content='https://Nagaemonn.github.io/treemit/img/featured-getting-started.png' />
 <meta name="twitter:title" content="treemit: 拡張子でフィルタリングできるツリーコマンド">
-<meta name="twitter:description" content="ディレクトリ構造を可視化する「tree」コマンドを拡張し、拡張子によるフィルタリング機能を追加したCLIツール"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="「tree」コマンドを拡張し，拡張子によるフィルタリング機能を追加したCLIツール"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://Nagaemonn.github.io/treemit/img/featured-getting-started.png' /><link rel="stylesheet" href="/treemit/custom.css">
 </head>
 
@@ -52,7 +52,7 @@
     <header>
         <figure class="site-avatar">
             <a href="/treemit">
-                <img src="img/avatar.png" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                <img src="/treemit/img/avatar.png" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
             </a>
             
                 <span class="emoji">🌲</span>
@@ -146,7 +146,7 @@
     
         
         <h3 class="article-subtitle">
-            ディレクトリ構造を可視化する「tree」コマンドを拡張し、拡張子によるフィルタリング機能を追加したCLIツール
+            「tree」コマンドを拡張し，拡張子によるフィルタリング機能を追加したCLIツール
         </h3>
         
     </div>
@@ -167,7 +167,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Jun 19, 2025</time>
+                <time class="article-time--published">Jul 03, 2025</time>
             </div>
         
 
@@ -198,21 +198,17 @@
     
     
     <h2 id="treemitとは">treemitとは？
-</h2><p>treemitは、Unixの<code>tree</code>コマンドを拡張した、より柔軟なディレクトリ構造可視化ツールです。
-従来の<code>tree</code>コマンドでは難しかった「特定の拡張子のファイルだけを表示する」といった操作が簡単にできます。</p>
-<h2 id="なぜtreemitを使うのか">なぜtreemitを使うのか？
-</h2><p>開発プロジェクトで以下のような場面に遭遇したことはありませんか？</p>
-<ul>
-<li>プロジェクトの構造を把握したいが、不要なファイルが多すぎて見づらい</li>
-<li><code>.go</code>ファイルだけのディレクトリ構造を確認したい</li>
-<li>ディレクトリの深さを制限しつつ、特定の拡張子のファイルだけを表示したい</li>
+</h2><p>treemitは，Unixの<code>tree</code>コマンドを拡張したディレクトリ構造可視化ツールです．
+従来の<code>tree</code>コマンドでは扱えなかった「特定の拡張子のファイルだけを表示する」といった操作が行えます．</p>
+<h2 id="treemitが便利な場面">treemitが便利な場面
+</h2><ul>
+<li>プロジェクトのファイル構造を一覧したいが，treeでは冗長なファイルが多すぎて見づらい時</li>
+<li>findやawkを組み合わせたシェルスクリプトも出力がイマイチな時</li>
+<li>プロジェクトの構造をLLMに伝えたいが，ファイル数が多すぎて上限に引っかかる時</li>
 </ul>
-<p>treemitは、このような開発者の日常的なニーズに応えるために開発されました。</p>
-<h2 id="インストール方法">インストール方法
-</h2><h3 id="goを使用してインストール">Goを使用してインストール
-</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>go install github.com/Nagaemonn/treemit@latest
-</span></span></code></pre></div><h3 id="homebrewを使用してインストール予定">Homebrewを使用してインストール（予定）
-</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew tap Nagaemonn/treemit
+<p>treemitは，このようなAI時代における開発者の日常的なニーズに応えるために開発されました．</p>
+<h2 id="インストールhomebrew">インストール（Homebrew）
+</h2><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew tap Nagaemonn/treemit
 </span></span><span style="display:flex;"><span>brew install treemit
 </span></span></code></pre></div><h2 id="基本的な使い方">基本的な使い方
 </h2><h3 id="基本的なディレクトリツリーの表示">基本的なディレクトリツリーの表示
@@ -260,10 +256,11 @@
 </h2><h3 id="goプロジェクトのソースファイル構造を確認">Goプロジェクトのソースファイル構造を確認
 </h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>treemit -E <span style="color:#ae81ff">2</span> ./src  <span style="color:#75715e"># 各拡張子ごとに2ファイルまで表示</span>
 </span></span></code></pre></div><h3 id="ドキュメントファイルの構造を2階層まで表示">ドキュメントファイルの構造を2階層まで表示
-</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>treemit -E <span style="color:#ae81ff">1</span> -L <span style="color:#ae81ff">2</span> ./docs  <span style="color:#75715e"># 各拡張子ごとに1ファイルまで、深さ2階層まで表示</span>
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>treemit -E <span style="color:#ae81ff">1</span> -L <span style="color:#ae81ff">2</span> ./docs  <span style="color:#75715e"># 各拡張子ごとに1ファイルまで，深さ2階層まで表示</span>
 </span></span></code></pre></div><h2 id="開発背景">開発背景
-</h2><p>既存の<code>tree</code>コマンドは優れたツールですが、特定の拡張子のファイルだけを表示する機能が不足していました。
-treemitは、この機能を追加することで、より効率的なプロジェクト構造の把握を可能にします。</p>
+</h2><p>既存の<code>tree</code>コマンドはディレクトリの構造を一覧するのに優れたツールですが，拡張子ベースで表示するファイル数を制限する機能が不足していました．
+treemitは，この機能を実装することで，より効率的なプロジェクト構造の把握を可能にします．
+さらに，コンパクトに構造を表示することでLLMに伝える際のトークン数削減に非常に効果的です．</p>
 <h2 id="今後の展望">今後の展望
 </h2><ul>
 <li>より多くのフィルタリングオプションの追加</li>
@@ -271,11 +268,10 @@ treemitは、この機能を追加することで、より効率的なプロジ�
 <li>パフォーマンスの最適化</li>
 </ul>
 <h2 id="フィードバック">フィードバック
-</h2><p>バグ報告や機能リクエストは、<a class="link" href="https://github.com/Nagaemonn/treemit/issues"  target="_blank" rel="noopener"
-    >GitHubのIssue</a>にお願いします。
-プルリクエストも大歓迎です！</p>
+</h2><p>バグ報告や機能リクエストは，<a class="link" href="https://github.com/Nagaemonn/treemit/issues"  target="_blank" rel="noopener"
+    >GitHubのIssue</a>にお願いします．</p>
 <h2 id="ライセンス">ライセンス
-</h2><p>このプロジェクトはMITライセンスの下で公開されています。</p>
+</h2><p>このプロジェクトはMITライセンスの下で公開されています．</p>
 
 </section>
 
@@ -287,8 +283,6 @@ treemitは、この機能を追加することで、より効率的なプロジ�
             <a href="/treemit/tags/cli/">CLI</a>
         
             <a href="/treemit/tags/go/">Go</a>
-        
-            <a href="/treemit/tags/productivity/">Productivity</a>
         
             <a href="/treemit/tags/development-tools/">Development Tools</a>
         

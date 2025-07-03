@@ -6,28 +6,24 @@
         <description>Recent content in CLI on treemit</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ja</language>
-        <lastBuildDate>Thu, 19 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Nagaemonn.github.io/treemit/tags/cli/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 03 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Nagaemonn.github.io/treemit/tags/cli/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>treemit: 拡張子でフィルタリングできるツリーコマンド</title>
         <link>https://Nagaemonn.github.io/treemit/post/getting-started/</link>
-        <pubDate>Thu, 19 Jun 2025 00:00:00 +0000</pubDate>
+        <pubDate>Thu, 03 Jul 2025 00:00:00 +0000</pubDate>
         
         <guid>https://Nagaemonn.github.io/treemit/post/getting-started/</guid>
         <description>&lt;img src="https://Nagaemonn.github.io/treemit/img/featured-getting-started.png" alt="Featured image of post treemit: 拡張子でフィルタリングできるツリーコマンド" /&gt;&lt;h2 id=&#34;treemitとは&#34;&gt;treemitとは？
-&lt;/h2&gt;&lt;p&gt;treemitは、Unixの&lt;code&gt;tree&lt;/code&gt;コマンドを拡張した、より柔軟なディレクトリ構造可視化ツールです。
-従来の&lt;code&gt;tree&lt;/code&gt;コマンドでは難しかった「特定の拡張子のファイルだけを表示する」といった操作が簡単にできます。&lt;/p&gt;
-&lt;h2 id=&#34;なぜtreemitを使うのか&#34;&gt;なぜtreemitを使うのか？
-&lt;/h2&gt;&lt;p&gt;開発プロジェクトで以下のような場面に遭遇したことはありませんか？&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;プロジェクトの構造を把握したいが、不要なファイルが多すぎて見づらい&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;.go&lt;/code&gt;ファイルだけのディレクトリ構造を確認したい&lt;/li&gt;
-&lt;li&gt;ディレクトリの深さを制限しつつ、特定の拡張子のファイルだけを表示したい&lt;/li&gt;
+&lt;/h2&gt;&lt;p&gt;treemitは，Unixの&lt;code&gt;tree&lt;/code&gt;コマンドを拡張したディレクトリ構造可視化ツールです．
+従来の&lt;code&gt;tree&lt;/code&gt;コマンドでは扱えなかった「特定の拡張子のファイルだけを表示する」といった操作が行えます．&lt;/p&gt;
+&lt;h2 id=&#34;treemitが便利な場面&#34;&gt;treemitが便利な場面
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;プロジェクトのファイル構造を一覧したいが，treeでは冗長なファイルが多すぎて見づらい時&lt;/li&gt;
+&lt;li&gt;findやawkを組み合わせたシェルスクリプトも出力がイマイチな時&lt;/li&gt;
+&lt;li&gt;プロジェクトの構造をLLMに伝えたいが，ファイル数が多すぎて上限に引っかかる時&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;treemitは、このような開発者の日常的なニーズに応えるために開発されました。&lt;/p&gt;
-&lt;h2 id=&#34;インストール方法&#34;&gt;インストール方法
-&lt;/h2&gt;&lt;h3 id=&#34;goを使用してインストール&#34;&gt;Goを使用してインストール
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;go install github.com/Nagaemonn/treemit@latest
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;homebrewを使用してインストール予定&#34;&gt;Homebrewを使用してインストール（予定）
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;brew tap Nagaemonn/treemit
+&lt;p&gt;treemitは，このようなAI時代における開発者の日常的なニーズに応えるために開発されました．&lt;/p&gt;
+&lt;h2 id=&#34;インストールhomebrew&#34;&gt;インストール（Homebrew）
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;brew tap Nagaemonn/treemit
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;brew install treemit
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;基本的な使い方&#34;&gt;基本的な使い方
 &lt;/h2&gt;&lt;h3 id=&#34;基本的なディレクトリツリーの表示&#34;&gt;基本的なディレクトリツリーの表示
@@ -75,10 +71,11 @@
 &lt;/h2&gt;&lt;h3 id=&#34;goプロジェクトのソースファイル構造を確認&#34;&gt;Goプロジェクトのソースファイル構造を確認
 &lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;treemit -E &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; ./src  &lt;span style=&#34;color:#75715e&#34;&gt;# 各拡張子ごとに2ファイルまで表示&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;ドキュメントファイルの構造を2階層まで表示&#34;&gt;ドキュメントファイルの構造を2階層まで表示
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;treemit -E &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; -L &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; ./docs  &lt;span style=&#34;color:#75715e&#34;&gt;# 各拡張子ごとに1ファイルまで、深さ2階層まで表示&lt;/span&gt;
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;treemit -E &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; -L &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; ./docs  &lt;span style=&#34;color:#75715e&#34;&gt;# 各拡張子ごとに1ファイルまで，深さ2階層まで表示&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;開発背景&#34;&gt;開発背景
-&lt;/h2&gt;&lt;p&gt;既存の&lt;code&gt;tree&lt;/code&gt;コマンドは優れたツールですが、特定の拡張子のファイルだけを表示する機能が不足していました。
-treemitは、この機能を追加することで、より効率的なプロジェクト構造の把握を可能にします。&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;既存の&lt;code&gt;tree&lt;/code&gt;コマンドはディレクトリの構造を一覧するのに優れたツールですが，拡張子ベースで表示するファイル数を制限する機能が不足していました．
+treemitは，この機能を実装することで，より効率的なプロジェクト構造の把握を可能にします．
+さらに，コンパクトに構造を表示することでLLMに伝える際のトークン数削減に非常に効果的です．&lt;/p&gt;
 &lt;h2 id=&#34;今後の展望&#34;&gt;今後の展望
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;より多くのフィルタリングオプションの追加&lt;/li&gt;
@@ -86,11 +83,10 @@ treemitは、この機能を追加することで、より効率的なプロジ�
 &lt;li&gt;パフォーマンスの最適化&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;フィードバック&#34;&gt;フィードバック
-&lt;/h2&gt;&lt;p&gt;バグ報告や機能リクエストは、&lt;a class=&#34;link&#34; href=&#34;https://github.com/Nagaemonn/treemit/issues&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;GitHubのIssue&lt;/a&gt;にお願いします。
-プルリクエストも大歓迎です！&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;バグ報告や機能リクエストは，&lt;a class=&#34;link&#34; href=&#34;https://github.com/Nagaemonn/treemit/issues&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;GitHubのIssue&lt;/a&gt;にお願いします．&lt;/p&gt;
 &lt;h2 id=&#34;ライセンス&#34;&gt;ライセンス
-&lt;/h2&gt;&lt;p&gt;このプロジェクトはMITライセンスの下で公開されています。&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;このプロジェクトはMITライセンスの下で公開されています．&lt;/p&gt;
 </description>
         </item>
         
