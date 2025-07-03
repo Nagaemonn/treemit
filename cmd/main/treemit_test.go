@@ -28,29 +28,6 @@ func TestGetFileExtension(t *testing.T) {
 	}
 }
 
-func TestGroupFilesByExtension(t *testing.T) {
-	nodes := []*Node{
-		{Name: "test1.go", IsDir: false, Ext: "go"},
-		{Name: "test2.go", IsDir: false, Ext: "go"},
-		{Name: "test3.txt", IsDir: false, Ext: "txt"},
-		{Name: "dir1", IsDir: true, Ext: ""},
-	}
-
-	groups := groupFilesByExtension(nodes)
-
-	if len(groups) != 2 {
-		t.Errorf("Expected 2 groups, got %d", len(groups))
-	}
-
-	if len(groups["go"]) != 2 {
-		t.Errorf("Expected 2 .go files, got %d", len(groups["go"]))
-	}
-
-	if len(groups["txt"]) != 1 {
-		t.Errorf("Expected 1 .txt file, got %d", len(groups["txt"]))
-	}
-}
-
 func TestWalkTree(t *testing.T) {
 	// テスト用の一時ディレクトリを作成
 	tempDir, err := os.MkdirTemp("", "treemit_test")

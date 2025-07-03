@@ -18,7 +18,36 @@ OPTION
     -d                 List directories only.
     -L, --level        Max display depth of the directory tree.
     -E, --extension    Max display files of the same extensions.
+    -I, --ignore       List only those files that do not match the pattern given.
+                      Multiple patterns can be specified with '|'.
     --help             Print usage and this help message and exit.
-
-    W.I.P
 ```
+
+## Examples
+
+```sh
+# Show all files including hidden ones
+treemit -a
+
+# Show only directories
+treemit -d
+
+# Limit display depth to 2 levels
+treemit -L 2
+
+# Show only 1 file per extension group
+treemit -E 1
+
+# Exclude .md and .go files
+treemit -I "*.md|*.go"
+
+# Combine multiple options
+treemit -a -L 3 -E 2 -I "*.tmp|*.log"
+```
+
+## Features
+
+- **Extension-based grouping**: Files with the same extension are grouped together for better readability
+- **Streaming output**: Unlike traditional tree commands, treemit outputs results immediately without building the entire tree in memory
+- **Silent error handling**: Access permission errors are handled gracefully without cluttering the output
+- **Pattern exclusion**: Exclude files and directories using glob patterns

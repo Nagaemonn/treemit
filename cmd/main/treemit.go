@@ -45,14 +45,12 @@ func walkTree(root string, opts *options, depth int) *Node {
 	}
 	info, err := os.Stat(root)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error reading directory %s: %v\n", root, err)
 		return nil
 	}
 	rootNode := &Node{Name: info.Name(), IsDir: info.IsDir(), Ext: getFileExtension(info.Name())}
 	if info.IsDir() {
 		entries, err := os.ReadDir(root)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "Error reading directory %s: %v\n", root, err)
 			return rootNode
 		}
 		for _, entry := range entries {
@@ -73,97 +71,94 @@ func walkTree(root string, opts *options, depth int) *Node {
 	return rootNode
 }
 
-// ツリーを表示する関数（ルート名も表示）
-func printTree(root *Node, opts *options) {
-	fmt.Println(root.Name)
-	printTreeFancy(root.Children, "", false, opts, 0)
-}
-
-// 同じ拡張子のファイルをグループ化する関数
-func groupFilesByExtension(nodes []*Node) map[string][]*Node {
-	groups := make(map[string][]*Node)
-	for _, node := range nodes {
-		if !node.IsDir && node.Ext != "" {
-			groups[node.Ext] = append(groups[node.Ext], node)
-		}
-	}
-	return groups
-}
-
-func printTreeFancy(nodes []*Node, prefix string, isRoot bool, opts *options, depth int) {
-	if opts.level > 0 && depth >= opts.level {
+// ツリーを即時出力しながら探索する関数（本家tree風）
+func printTreeStreaming(root string, opts *options, prefix string, isRoot bool, depth int) {
+	if opts.level > 0 && depth > opts.level {
 		return
 	}
-	// ディレクトリとファイルを分離
-	var dirs []*Node
-	var files []*Node
-	for _, node := range nodes {
-		if node.IsDir {
-			dirs = append(dirs, node)
-		} else {
-			files = append(files, node)
-		}
+	info, err := os.Stat(root)
+	if err != nil {
+		return
 	}
-
-	// ディレクトリを表示
-	for i, node := range dirs {
-		isLast := i == len(dirs)-1 && len(files) == 0
-		var branch string
-		if isRoot {
-			branch = ""
-		} else if isLast {
-			branch = "└── "
-		} else {
-			branch = "├── "
+	if isRoot {
+		fmt.Println(info.Name())
+	}
+	if info.IsDir() {
+		entries, err := os.ReadDir(root)
+		if err != nil {
+			return
 		}
-		fmt.Printf("%s%s%s\n", prefix, branch, node.Name)
-		nextPrefix := prefix
-		if !isRoot {
-			if isLast {
+		// フィルタリング
+		var dirs []os.DirEntry
+		var files []os.DirEntry
+		for _, entry := range entries {
+			if !opts.all && strings.HasPrefix(entry.Name(), ".") {
+				continue
+			}
+			if opts.ignorePattern != "" && matchesPattern(entry.Name(), opts.ignorePattern) {
+				continue
+			}
+			if entry.IsDir() {
+				dirs = append(dirs, entry)
+			} else if !opts.dirOnly {
+				files = append(files, entry)
+			}
+		}
+		// ディレクトリを先に出力
+		for i, entry := range dirs {
+			isLastDir := i == len(dirs)-1 && len(files) == 0
+			branch := "├── "
+			if isLastDir {
+				branch = "└── "
+			}
+			fmt.Printf("%s%s%s\n", prefix, branch, entry.Name())
+			nextPrefix := prefix
+			if isLastDir {
 				nextPrefix += "    "
 			} else {
 				nextPrefix += "│   "
 			}
+			childPath := filepath.Join(root, entry.Name())
+			printTreeStreaming(childPath, opts, nextPrefix, false, depth+1)
 		}
-		if len(node.Children) > 0 {
-			printTreeFancy(node.Children, nextPrefix, false, opts, depth+1)
-		}
-	}
-
-	// ファイルを拡張子ごとにグループ化して表示
-	if len(files) > 0 {
-		groups := groupFilesByExtension(files)
-		groupIndex := 0
-		for _, groupFiles := range groups {
-			isLastGroup := groupIndex == len(groups)-1
-			displayCount := len(groupFiles)
-			if opts.extension > 0 && displayCount > opts.extension {
-				displayCount = opts.extension
-			}
-
-			for i, node := range groupFiles[:displayCount] {
-				isLast := i == displayCount-1 && isLastGroup
-				var branch string
-				if isRoot {
-					branch = ""
-				} else if isLast {
-					branch = "└── "
-				} else {
-					branch = "├── "
+		// ファイルを拡張子ごとにグループ化して出力
+		if len(files) > 0 && !opts.dirOnly {
+			// グループ化
+			groups := make(map[string][]os.DirEntry)
+			var extOrder []string
+			for _, entry := range files {
+				ext := getFileExtension(entry.Name())
+				if _, ok := groups[ext]; !ok {
+					extOrder = append(extOrder, ext)
 				}
-				fmt.Printf("%s%s%s\n", prefix, branch, node.Name)
+				groups[ext] = append(groups[ext], entry)
 			}
-
-			// 残りのファイル数を表示
-			if opts.extension > 0 && len(groupFiles) > opts.extension {
-				remaining := len(groupFiles) - opts.extension
-				branch := "└── "
-				if !isLastGroup {
-					branch = "├── "
+			groupIndex := 0
+			for _, ext := range extOrder {
+				groupFiles := groups[ext]
+				displayCount := len(groupFiles)
+				if opts.extension > 0 && displayCount > opts.extension {
+					displayCount = opts.extension
 				}
-				fmt.Printf("%s%s... +%d\n", prefix, branch, remaining)
+				for i, entry := range groupFiles[:displayCount] {
+					isLastFile := (groupIndex == len(extOrder)-1) && (i == displayCount-1)
+					branch := "├── "
+					if isLastFile {
+						branch = "└── "
+					}
+					fmt.Printf("%s%s%s\n", prefix, branch, entry.Name())
+				}
+				// 残りのファイル数を表示
+				if opts.extension > 0 && len(groupFiles) > opts.extension {
+					remaining := len(groupFiles) - opts.extension
+					branch := "└── "
+					if groupIndex != len(extOrder)-1 {
+						branch = "├── "
+					}
+					fmt.Printf("%s%s... +%d\n", prefix, branch, remaining)
+				}
+				groupIndex++
 			}
-			groupIndex++
 		}
 	}
 }
@@ -228,11 +223,11 @@ func goMain(args []string) int {
 	}
 	if flags.NArg() == 0 {
 		// 引数がなければカレントディレクトリのみ
-		printTree(walkTree(".", opts, 0), opts)
+		printTreeStreaming(".", opts, "", true, 0)
 	} else {
 		for i := 0; i < flags.NArg(); i++ {
 			dir := flags.Arg(i)
-			printTree(walkTree(dir, opts, 0), opts)
+			printTreeStreaming(dir, opts, "", true, 0)
 		}
 	}
 	return 0
