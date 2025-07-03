@@ -45,3 +45,6 @@ treemit
 *.pkg
 *.deb
 *.rpm
+
+# Logs
+*log*

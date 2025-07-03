@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Checkout main branch
         uses: actions/checkout@v3
+        with:
+          ref: main
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
