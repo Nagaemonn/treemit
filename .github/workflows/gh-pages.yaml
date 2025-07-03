@@ -23,11 +23,11 @@ jobs:
           hugo-version: 'latest'
 
       - name: Build
-        run: hugo -s docs -d public
+        run: hugo -s docs -d docs/public
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: docs/public
           publish_branch: gh-pages 
