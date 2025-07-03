@@ -19,7 +19,7 @@ OPTION
     -L, --level        Max display depth of the directory tree.
     -E, --extension    Max display files of the same extensions.
     -I, --ignore       List only those files that do not match the pattern given.
-                      Multiple patterns can be specified with '|'.
+                       Multiple patterns can be specified with '|'.
     --help             Print usage and this help message and exit.
 ```
 
