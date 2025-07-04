@@ -25,6 +25,12 @@ jobs:
       - name: Debug - Show Hugo version
         run: hugo version
 
+      - name: Debug - Show Hugo config
+        run: |
+          echo "=== Hugo config ==="
+          hugo config -s docs
+          echo "=== Hugo config end ==="
+
       - name: Debug - Show directory structure before build
         run: |
           echo "=== Current directory ==="
@@ -43,6 +49,19 @@ jobs:
           echo "=== Starting Hugo build ==="
           hugo -s docs -d public --logLevel debug
           echo "=== Hugo build completed ==="
+          echo "=== Checking if public directory exists ==="
+          ls -la
+          echo "=== Checking docs directory after build ==="
+          ls -la docs/
+          echo "=== Checking if public directory was created ==="
+          if [ -d "public" ]; then
+            echo "public directory exists"
+            ls -la public/
+          else
+            echo "public directory does not exist"
+            echo "=== Checking for other potential output directories ==="
+            find . -name "*.html" -type f | head -10
+          fi
 
       - name: Debug - Show build output
         run: |
