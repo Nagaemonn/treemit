@@ -22,3 +22,7 @@ body, html, .article-content {
 :root[data-scheme="light"] .article-content .highlight {
   background: transparent;
 }
+
+#dark-mode-toggle span {
+  font-weight: 400 !important; /* どちらのモードでも通常の太さに固定 */
+}
