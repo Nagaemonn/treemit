@@ -34,6 +34,9 @@ jobs:
           sudo apt-get install -y tree
           tree -L 3 public || echo "public directory not found"
 
+      - name: Find all HTML files
+        run: find . -name "*.html"
+
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
