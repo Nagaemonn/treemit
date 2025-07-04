@@ -26,13 +26,13 @@ jobs:
         run: |
           pwd
           ls -la
-          hugo -s docs -d public
+          hugo -s docs -d ../public
 
       - name: Show public directory tree
         run: |
           sudo apt-get update
           sudo apt-get install -y tree
-          tree -L 3 public || echo "public directory not found"
+          tree -L 3 ../public || echo "public directory not found"
 
       - name: Find all HTML files
         run: find . -name "*.html"
