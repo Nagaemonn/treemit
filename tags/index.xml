@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Tags on treemit</title>
+        <link>https://Nagaemonn.github.io/treemit/tags/</link>
+        <description>Recent content in Tags on treemit</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>ja</language>
+        <lastBuildDate>Thu, 03 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Nagaemonn.github.io/treemit/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>CLI</title>
+        <link>https://Nagaemonn.github.io/treemit/tags/cli/</link>
+        <pubDate>Thu, 03 Jul 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://Nagaemonn.github.io/treemit/tags/cli/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Development Tools</title>
+        <link>https://Nagaemonn.github.io/treemit/tags/development-tools/</link>
+        <pubDate>Thu, 03 Jul 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://Nagaemonn.github.io/treemit/tags/development-tools/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Go</title>
+        <link>https://Nagaemonn.github.io/treemit/tags/go/</link>
+        <pubDate>Thu, 03 Jul 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://Nagaemonn.github.io/treemit/tags/go/</guid>
+        <description></description>
+        </item>
+        
+    </channel>
+</rss>
