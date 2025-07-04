@@ -115,8 +115,8 @@ jobs:
           just upload_assets v${{ steps.vars.outputs.tag }}
 
   docker:
-    needs: publish
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v'))
     permissions:
       packages: write
       contents: read
@@ -133,7 +133,8 @@ jobs:
           tags: |
             type=raw,value=latest
             type=sha,format=short
-            type=raw,value=${{ needs.publish.outputs.tag }}
+            # タグpush時のみバージョンタグを付与
+            ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') && format('type=raw,value={0}', github.ref_name) || '' }}
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v2
         with:
