@@ -23,7 +23,10 @@ jobs:
           hugo-version: 'latest'
 
       - name: Build
-        run: hugo -s docs -d public
+        run: |
+          pwd
+          ls -la
+          hugo -s docs -d public
 
       - name: Show public directory tree
         run: |
