@@ -22,8 +22,36 @@ jobs:
         with:
           hugo-version: 'latest'
 
+      - name: Debug - Show Hugo version
+        run: hugo version
+
+      - name: Debug - Show directory structure before build
+        run: |
+          echo "=== Current directory ==="
+          pwd
+          echo "=== Root directory contents ==="
+          ls -la
+          echo "=== Docs directory contents ==="
+          ls -la docs/
+          echo "=== Docs content directory ==="
+          ls -la docs/content/
+          echo "=== Docs layouts directory ==="
+          ls -la docs/layouts/
+
       - name: Build
-        run: hugo -s docs -d public
+        run: |
+          echo "=== Starting Hugo build ==="
+          hugo -s docs -d public --verbose
+          echo "=== Hugo build completed ==="
+
+      - name: Debug - Show build output
+        run: |
+          echo "=== Public directory contents ==="
+          ls -la public/
+          echo "=== Public directory size ==="
+          du -sh public/
+          echo "=== Public directory tree (first 3 levels) ==="
+          find public/ -type f | head -20
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
