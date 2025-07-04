@@ -41,7 +41,7 @@ jobs:
       - name: Build
         run: |
           echo "=== Starting Hugo build ==="
-          hugo -s docs -d public --verbose
+          hugo -s docs -d public --logLevel debug
           echo "=== Hugo build completed ==="
 
       - name: Debug - Show build output
