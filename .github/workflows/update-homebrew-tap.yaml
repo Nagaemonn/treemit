@@ -4,15 +4,22 @@ on:
   release:
     types: [published]
   workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag'
+        required: true
 
 jobs:
   update-tap:
     runs-on: ubuntu-latest
     steps:
-      - name: 最新リリース情報取得
-        id: get_release
+      - name: Set TAG_NAME
         run: |
-          echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+          if [ -n "${{ github.event.inputs.tag }}" ]; then
+            echo "TAG_NAME=${{ github.event.inputs.tag }}" >> $GITHUB_ENV
+          else
+            echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+          fi
           echo "REPO=${GITHUB_REPOSITORY}" >> $GITHUB_ENV
           echo "RELEASE_URL=https://github.com/${GITHUB_REPOSITORY}/releases/download/${GITHUB_REF#refs/tags/}/treemit-darwin-amd64.tar.gz" >> $GITHUB_ENV
 
@@ -68,4 +75,11 @@ jobs:
           cd homebrew-tap
           git add Formula/treemit.rb
           git commit -m "update formula to $TAG_NAME"
-          git push origin main 
+          git push origin main
+
+      - name: Homebrew Formula自動更新ワークフローを呼び出し
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run update-homebrew-tap.yaml -R ${{ github.repository }} -f tag=${{ needs.setup.outputs.tag }} 
