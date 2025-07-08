@@ -100,7 +100,6 @@ jobs:
       - name: Extract version from tag
         id: vars
         run: |
-          # Extract version from tag (remove 'refs/tags/v' prefix)
           echo "tag=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
 
       - name: Create release
