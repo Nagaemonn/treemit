@@ -32,6 +32,14 @@ jobs:
           echo "ARM_SHA256=$ARM_SHA256" >> $GITHUB_ENV
           echo "AMD_SHA256=$AMD_SHA256" >> $GITHUB_ENV
 
+      - name: リリースアセットの存在確認（リトライ）
+        run: |
+          for i in $(seq 1 10); do
+            wget --spider "$ARM_URL" && wget --spider "$AMD_URL" && break
+            echo "Waiting for release assets to be available..."
+            sleep 3
+          done
+
       - name: Set up SSH
         run: |
           mkdir -p ~/.ssh
