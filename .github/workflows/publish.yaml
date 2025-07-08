@@ -67,6 +67,11 @@ jobs:
           just make_distribution_files
           just upload_assets v${{ needs.setup.outputs.tag }}
 
+      - name: Homebrew Formula自動更新ワークフローを呼び出し
+        if: always()
+        run: |
+          gh workflow run update-homebrew-tap.yaml -R ${{ github.repository }}
+
   publish-tag:
     runs-on: ubuntu-latest
     # runs only when a tag is pushed
@@ -113,6 +118,11 @@ jobs:
         run: |
           just make_distribution_files
           just upload_assets v${{ steps.vars.outputs.tag }}
+
+      - name: Homebrew Formula自動更新ワークフローを呼び出し
+        if: always()
+        run: |
+          gh workflow run update-homebrew-tap.yaml -R ${{ github.repository }}
 
   docker:
     runs-on: ubuntu-latest
