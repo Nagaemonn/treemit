@@ -1,0 +1,62 @@
+name: Update Homebrew Tap
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  update-tap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 最新リリース情報取得
+        id: get_release
+        run: |
+          echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+          echo "REPO=${GITHUB_REPOSITORY}" >> $GITHUB_ENV
+          echo "RELEASE_URL=https://github.com/${GITHUB_REPOSITORY}/releases/download/${GITHUB_REF#refs/tags/}/treemit-darwin-amd64.tar.gz" >> $GITHUB_ENV
+
+      - name: 各アーキテクチャのリリースURLとSHA256計算
+        run: |
+          TAG_NAME=${GITHUB_REF#refs/tags/}
+          BASE_URL="https://github.com/${GITHUB_REPOSITORY}/releases/download/${TAG_NAME}"
+          ARM_URL="${BASE_URL}/treemit-darwin-arm64.tar.gz"
+          AMD_URL="${BASE_URL}/treemit-darwin-amd64.tar.gz"
+          wget -O arm64.tar.gz "$ARM_URL"
+          wget -O amd64.tar.gz "$AMD_URL"
+          ARM_SHA256=$(sha256sum arm64.tar.gz | awk '{print $1}')
+          AMD_SHA256=$(sha256sum amd64.tar.gz | awk '{print $1}')
+          echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
+          echo "ARM_URL=$ARM_URL" >> $GITHUB_ENV
+          echo "AMD_URL=$AMD_URL" >> $GITHUB_ENV
+          echo "ARM_SHA256=$ARM_SHA256" >> $GITHUB_ENV
+          echo "AMD_SHA256=$AMD_SHA256" >> $GITHUB_ENV
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.HOMEBREW_TAP_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+      - name: homebrew-tapをクローン
+        run: |
+          git clone git@github.com:Nagaemonn/homebrew-tap.git
+          cd homebrew-tap
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Formula更新
+        run: |
+          cd homebrew-tap/Formula
+          sed -i "s|version \".*\"|version \"${TAG_NAME#v}\"|" treemit.rb
+          sed -i "/on_arm/,/sha256 \".*\"/s|url \".*\"|url \"$ARM_URL\"|" treemit.rb
+          sed -i "/on_arm/,/sha256 \".*\"/s|sha256 \".*\"|sha256 \"$ARM_SHA256\"|" treemit.rb
+          sed -i "/on_intel/,/sha256 \".*\"/s|url \".*\"|url \"$AMD_URL\"|" treemit.rb
+          sed -i "/on_intel/,/sha256 \".*\"|sha256 \".*\"|sha256 \"$AMD_SHA256\"|" treemit.rb
+
+      - name: コミット＆プッシュ
+        run: |
+          cd homebrew-tap
+          git add Formula/treemit.rb
+          git commit -m "update formula to $TAG_NAME"
+          git push origin main 
