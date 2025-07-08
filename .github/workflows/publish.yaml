@@ -69,6 +69,8 @@ jobs:
 
       - name: Homebrew Formula自動更新ワークフローを呼び出し
         if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh workflow run update-homebrew-tap.yaml -R ${{ github.repository }}
 
@@ -121,6 +123,8 @@ jobs:
 
       - name: Homebrew Formula自動更新ワークフローを呼び出し
         if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh workflow run update-homebrew-tap.yaml -R ${{ github.repository }}
 
