@@ -72,7 +72,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh workflow run update-homebrew-tap.yaml -R ${{ github.repository }}
+          gh workflow run update-homebrew-tap.yaml -R ${{ github.repository }} -f tag=${{ needs.setup.outputs.tag }}
 
   publish-tag:
     runs-on: ubuntu-latest
@@ -126,7 +126,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh workflow run update-homebrew-tap.yaml -R ${{ github.repository }}
+          gh workflow run update-homebrew-tap.yaml -R ${{ github.repository }} -f tag=${{ steps.vars.outputs.tag }}
 
   docker:
     runs-on: ubuntu-latest
