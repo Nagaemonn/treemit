@@ -36,6 +36,8 @@
 &lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;treemit -a
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;ディレクトリのみを表示&#34;&gt;ディレクトリのみを表示
 &lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;treemit -d
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;特定のファイルやディレクトリを除外して表示&#34;&gt;特定のファイルやディレクトリを除外して表示
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;treemit -I &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;*.md|venv&amp;#34;&lt;/span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;# .mdファイルとvenvディレクトリを除外して表示&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;オプション一覧&#34;&gt;オプション一覧
 &lt;/h2&gt;&lt;table&gt;
   &lt;thead&gt;
@@ -60,6 +62,10 @@
       &lt;tr&gt;
           &lt;td&gt;-E, &amp;ndash;extension&lt;/td&gt;
           &lt;td&gt;各拡張子ごとの表示数上限を指定&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;-I, &amp;ndash;ignore&lt;/td&gt;
+          &lt;td&gt;指定したパターンに一致するファイル・ディレクトリを除外(パイプで複数指定)&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
           &lt;td&gt;&amp;ndash;help&lt;/td&gt;

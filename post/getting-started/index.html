@@ -221,6 +221,8 @@
 </h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>treemit -a
 </span></span></code></pre></div><h3 id="ディレクトリのみを表示">ディレクトリのみを表示
 </h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>treemit -d
+</span></span></code></pre></div><h3 id="特定のファイルやディレクトリを除外して表示">特定のファイルやディレクトリを除外して表示
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>treemit -I <span style="color:#e6db74">&#34;*.md|venv&#34;</span>  <span style="color:#75715e"># .mdファイルとvenvディレクトリを除外して表示</span>
 </span></span></code></pre></div><h2 id="オプション一覧">オプション一覧
 </h2><div class="table-wrapper"><table>
   <thead>
@@ -245,6 +247,10 @@
       <tr>
           <td>-E, &ndash;extension</td>
           <td>各拡張子ごとの表示数上限を指定</td>
+      </tr>
+      <tr>
+          <td>-I, &ndash;ignore</td>
+          <td>指定したパターンに一致するファイル・ディレクトリを除外(パイプで複数指定)</td>
       </tr>
       <tr>
           <td>&ndash;help</td>
