@@ -1,5 +1,5 @@
 # :evergreen_tree:treemit
-Enhanced "tree" command with file and depth limits.
+Enhanced "tree" command with file extension-based limits.
 
 [![Coverage Status](https://coveralls.io/repos/github/Nagaemonn/treemit/badge.svg?branch=main)](https://coveralls.io/github/Nagaemonn/treemit?branch=main)
 [![Go Report Card](https://goreportcard.com/badge/github.com/Nagaemonn/treemit)](https://goreportcard.com/report/github.com/Nagaemonn/treemit)
