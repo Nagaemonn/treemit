@@ -14,6 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set TAG_NAME
+        id: set_tag
         run: |
           if [ -n "${{ github.event.inputs.tag }}" ]; then
             echo "TAG_NAME=${{ github.event.inputs.tag }}" >> $GITHUB_ENV
@@ -28,15 +29,14 @@ jobs:
 
       - name: 各アーキテクチャのリリースURLとSHA256計算
         run: |
-          TAG_NAME=${GITHUB_REF#refs/tags/}
-          BASE_URL="https://github.com/${GITHUB_REPOSITORY}/releases/download/${TAG_NAME}"
+          source $GITHUB_ENV
+          BASE_URL="https://github.com/${REPO}/releases/download/${TAG_NAME}"
           ARM_URL="${BASE_URL}/treemit-darwin-arm64.tar.gz"
           AMD_URL="${BASE_URL}/treemit-darwin-amd64.tar.gz"
           wget -O arm64.tar.gz "$ARM_URL"
           wget -O amd64.tar.gz "$AMD_URL"
           ARM_SHA256=$(sha256sum arm64.tar.gz | awk '{print $1}')
           AMD_SHA256=$(sha256sum amd64.tar.gz | awk '{print $1}')
-          echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
           echo "ARM_URL=$ARM_URL" >> $GITHUB_ENV
           echo "AMD_URL=$AMD_URL" >> $GITHUB_ENV
           echo "ARM_SHA256=$ARM_SHA256" >> $GITHUB_ENV
@@ -44,6 +44,7 @@ jobs:
 
       - name: リリースアセットの存在確認（リトライ）
         run: |
+          source $GITHUB_ENV
           for i in $(seq 1 60); do
             wget --spider "$ARM_URL" && wget --spider "$AMD_URL" && break
             echo "Waiting for release assets to be available... ($i/60)"
@@ -66,6 +67,7 @@ jobs:
 
       - name: Formula更新
         run: |
+          source $GITHUB_ENV
           cd homebrew-tap/Formula
           sed -i "s|version \".*\"|version \"${TAG_NAME#v}\"|" treemit.rb
           sed -i "/on_arm/,/sha256 \".*\"/s|url \".*\"|url \"$ARM_URL\"|" treemit.rb
@@ -75,6 +77,7 @@ jobs:
 
       - name: コミット＆プッシュ
         run: |
+          source $GITHUB_ENV
           cd homebrew-tap
           git add Formula/treemit.rb
           git commit -m "update formula to $TAG_NAME"
