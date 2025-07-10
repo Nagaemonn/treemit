@@ -235,6 +235,16 @@ func goMain(args []string) int {
 }
 
 func main() {
+	for _, arg := range os.Args[1:] {
+		if arg == "--generate-completions" {
+			OutputCompletionScript()
+			os.Exit(0)
+		}
+		if arg == "--generate-zsh-completions" {
+			OutputZshCompletionScript()
+			os.Exit(0)
+		}
+	}
 	status := goMain(os.Args)
 	os.Exit(status)
 }
