@@ -13,7 +13,7 @@ Version := `grep '^const VERSION = ' cmd/main/version.go | sed "s/^VERSION = \"\
 
 # build the application with running tests
 build: test
-    go build -o treemit .cmd/main/
+    go build -o treemit ./cmd/main/
 
 # run tests and generate the coverage report
 test:
