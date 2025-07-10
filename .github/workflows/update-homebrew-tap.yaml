@@ -17,11 +17,14 @@ jobs:
         run: |
           if [ -n "${{ github.event.inputs.tag }}" ]; then
             echo "TAG_NAME=${{ github.event.inputs.tag }}" >> $GITHUB_ENV
-          else
+          elif [[ "${GITHUB_REF}" == refs/tags/* ]]; then
             echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+          else
+            echo "ERROR: No release tag provided. Exiting."
+            exit 1
           fi
           echo "REPO=${GITHUB_REPOSITORY}" >> $GITHUB_ENV
-          echo "RELEASE_URL=https://github.com/${GITHUB_REPOSITORY}/releases/download/${GITHUB_REF#refs/tags/}/treemit-darwin-amd64.tar.gz" >> $GITHUB_ENV
+          echo "RELEASE_URL=https://github.com/${GITHUB_REPOSITORY}/releases/download/${TAG_NAME}/treemit-darwin-amd64.tar.gz" >> $GITHUB_ENV
 
       - name: 各アーキテクチャのリリースURLとSHA256計算
         run: |
