@@ -40,7 +40,7 @@ func getFileExtension(name string) string {
 // ファイル構造を探索する関数（ルートノードを返す形に変更）
 // depth: 現在の深さ（ルートは0）
 func walkTree(root string, opts *options, depth int) *Node {
-	if opts.level > 0 && depth > opts.level {
+	if opts.level > 0 && depth >= opts.level {
 		return nil
 	}
 	info, err := os.Stat(root)
@@ -73,7 +73,7 @@ func walkTree(root string, opts *options, depth int) *Node {
 
 // ツリーを即時出力しながら探索する関数（本家tree風）
 func printTreeStreaming(root string, opts *options, prefix string, isRoot bool, depth int) {
-	if opts.level > 0 && depth > opts.level {
+	if opts.level > 0 && depth >= opts.level {
 		return
 	}
 	info, err := os.Stat(root)
