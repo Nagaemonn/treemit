@@ -44,10 +44,10 @@ jobs:
 
       - name: リリースアセットの存在確認（リトライ）
         run: |
-          for i in $(seq 1 10); do
+          for i in $(seq 1 60); do
             wget --spider "$ARM_URL" && wget --spider "$AMD_URL" && break
-            echo "Waiting for release assets to be available..."
-            sleep 3
+            echo "Waiting for release assets to be available... ($i/60)"
+            sleep 10
           done
 
       - name: Set up SSH
