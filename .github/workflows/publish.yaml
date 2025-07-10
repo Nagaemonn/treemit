@@ -76,18 +76,15 @@ jobs:
 
   publish-tag:
     runs-on: ubuntu-latest
-    needs: publish
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
     steps:
       - uses: extractions/setup-just@v3
         with:
           just-version: '1.40.0'
-
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
-
       - name: Initialize Git
         shell: bash
         run: |
@@ -96,12 +93,10 @@ jobs:
           auth_header="$(git config --local --get http.https://github.com/.extraheader)"
           git submodule sync --recursive
           git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1
-
       - name: Extract version from tag
         id: vars
         run: |
           echo "tag=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
-
       - name: Create release
         id: create_release
         uses: actions/create-release@v1.0.0
@@ -112,14 +107,12 @@ jobs:
           release_name: Release v${{ steps.vars.outputs.tag }}
           draft: false
           prerelease: false
-
       - name: Create distribution files.
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           just make_distribution_files
           just upload_assets v${{ steps.vars.outputs.tag }}
-
       - name: Homebrew Formula自動更新ワークフローを呼び出し
         if: always()
         env:
@@ -129,7 +122,6 @@ jobs:
 
   docker:
     runs-on: ubuntu-latest
-    needs: publish
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
     permissions:
       packages: write
