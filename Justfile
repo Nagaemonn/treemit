@@ -36,7 +36,7 @@ make_distribution_files:
     for os in "linux" "windows" "darwin"; do \
         for arch in "amd64" "arm64"; do \
             mkdir -p dist/treemit-$os-$arch; \
-            env GOOS=$os GOARCH=$arch go build -o dist/treemit-$os-$arch/treemit cmd/main/treemit.go; \
+            env GOOS=$os GOARCH=$arch go build -o dist/treemit-$os-$arch/treemit .cmd/main/; \
             cp README.md LICENSE dist/treemit-$os-$arch/; \
             tar cvfz dist/treemit-$os-$arch.tar.gz -C dist treemit-$os-$arch; \
         done; \
